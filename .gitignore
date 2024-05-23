@@ -2,13 +2,14 @@
 .vscode/
 
 # Build folders
-debug/
-build*/
-dev-*/
+/debug/
+/build*/
+/dev_*/
+/test/**/*.js
 **/.cache/
 
 # MacOS
 .DS_Store
 
 # NPM
-node_modules
+/node_modules

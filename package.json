@@ -7,7 +7,6 @@
     "test": "test"
   },
   "scripts": {
-    "runtime-bundle": "./node_modules/esbuild/bin/esbuild src/jsruntime/bundle/index.js --bundle --define:process.env.NODE_ENV=\\\"development\\\"",
     "bundle": "node ./build.js",
     "fmt": "prettier -w src/render/react"
   },

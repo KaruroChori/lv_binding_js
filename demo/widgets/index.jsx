@@ -35,89 +35,91 @@ function App () {
     const colorListRef = useRef()
 
     return (
-        <View ref={wrapperRef} style={style.window}>
-            <Tabs
-                tabs={["Profile", "Analytics", "Shop"]}
-                tabSize={70}
-                style={style.tabs}
-            >
-                <Profile />
-                <Analytics />
-                <Shop />
-            </Tabs>
-            <View
-                style={style.colorList}
-                align={{
-                    type: EAlignType.ALIGN_BOTTOM_RIGHT,
-                    pos: [-10, -10]
-                }}
-                ref={colorListRef}
-            >
-                {
-                    colorsStyle.map((color, i) => (
-                        <Button
-                            ref={ins => colorListItemsRef.current[i] = ins}
-                            style={[style.colorListButton, color]}
-                            data-color={colorList[i]}
-                            onClick={(e) => {
-                                const { dataset } = e.target
-                                const { color } = dataset
+        <>
+            <View ref={wrapperRef} style={style.window}>
+                <Tabs
+                    tabs={["Profile", "Analytics", "Shop"]}
+                    tabSize={70}
+                    style={style.tabs}
+                >
+                    <Profile />
+                    <Analytics />
+                    <Shop />
+                </Tabs>
+                <View
+                    style={style.colorList}
+                    align={{
+                        type: EAlignType.ALIGN_BOTTOM_RIGHT,
+                        pos: [-10, -10]
+                    }}
+                    ref={colorListRef}
+                >
+                    {
+                        colorsStyle.map((color, i) => (
+                            <Button
+                                ref={ins => colorListItemsRef.current[i] = ins}
+                                style={[style.colorListButton, color]}
+                                data-color={colorList[i]}
+                                onClick={(e) => {
+                                    const { dataset } = e.target
+                                    const { color } = dataset
 
-                                Theme.setTheme({
-                                    primaryColor: color
-                                })
-                            }}
-                        />
-                    ))
-                }
-            </View>
-            <Button
-                style={style.colorButton}
-                align={{
-                    type: EAlignType.ALIGN_BOTTOM_RIGHT,
-                    pos: [-15, -15]
-                }}
-                onClick={() => {
-                    setColorListExpand(!colorListExpand)
-                    const width = wrapperRef.current.style.width - 20
-                    if (!colorListExpand) {
-                        const animate = Animate.timing({
-                            duration: 200,
-                            startValue: 0,
-                            endValue: 256,
-                            execCallback: (value) => {
-                                colorListRef.current.setStyle({
-                                    width: Math.floor((value / 256) * (width - 60) + 60),
-                                })
-                                colorListItemsRef.current.forEach(item => {
-                                    item.setStyle({
-                                        opacity: (value / 256).toFixed(2),
+                                    Theme.setTheme({
+                                        primaryColor: color
                                     })
-                                })
-                            }
-                        })
-                        animate.start()
-                    } else {
-                        const animate = Animate.timing({
-                            duration: 200,
-                            startValue: 256,
-                            endValue: 0,
-                            execCallback: (value) => {
-                                colorListRef.current.setStyle({
-                                    width: Math.floor((value / 256) * (width - 60) + 60),
-                                })
-                                colorListItemsRef.current.forEach(item => {
-                                    item.setStyle({
-                                        opacity: (value / 256).toFixed(2),
-                                    })
-                                })
-                            }
-                        })
-                        animate.start()
+                                }}
+                            />
+                        ))
                     }
-                }}
-            />
-        </View>
+                </View>
+                <Button
+                    style={style.colorButton}
+                    align={{
+                        type: EAlignType.ALIGN_BOTTOM_RIGHT,
+                        pos: [-15, -15]
+                    }}
+                    onClick={() => {
+                        setColorListExpand(!colorListExpand)
+                        const width = wrapperRef.current.style.width - 20
+                        if (!colorListExpand) {
+                            const animate = Animate.timing({
+                                duration: 200,
+                                startValue: 0,
+                                endValue: 256,
+                                execCallback: (value) => {
+                                    colorListRef.current.setStyle({
+                                        width: Math.floor((value / 256) * (width - 60) + 60),
+                                    })
+                                    colorListItemsRef.current.forEach(item => {
+                                        item.setStyle({
+                                            opacity: (value / 256).toFixed(2),
+                                        })
+                                    })
+                                }
+                            })
+                            animate.start()
+                        } else {
+                            const animate = Animate.timing({
+                                duration: 200,
+                                startValue: 256,
+                                endValue: 0,
+                                execCallback: (value) => {
+                                    colorListRef.current.setStyle({
+                                        width: Math.floor((value / 256) * (width - 60) + 60),
+                                    })
+                                    colorListItemsRef.current.forEach(item => {
+                                        item.setStyle({
+                                            opacity: (value / 256).toFixed(2),
+                                        })
+                                    })
+                                }
+                            })
+                            animate.start()
+                        }
+                    }}
+                />
+            </View>
+        </>
     )
 };
 

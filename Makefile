@@ -9,6 +9,15 @@ clean:
 	rm -rf $(DEV_MACOS)
 	rm -rf $(BUILD_ARM)
 
+sim-x86:
+	@mkdir -p $(DEV_X86)
+	cmake -B "$(DEV_X86)" \
+		-DCMAKE_BUILD_TYPE=Simulator \
+		-DCMAKE_BUILD_PLATFORM=x86 \
+		-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@3 \
+		-DOPENSSL_LIBRARIES=/usr/local/opt/openssl@3/lib
+	cmake --build $(DEV_X86)
+
 dev-x86:
 	@mkdir -p $(DEV_X86)
 	cmake -B "$(DEV_X86)" \
