@@ -6,6 +6,7 @@
 /build*/
 /dev_*/
 /test/**/*.js
+/demo/**/*.js
 **/.cache/
 
 # MacOS

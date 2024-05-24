@@ -269,7 +269,7 @@ function App () {
         historyStr += "\n"
     })
     return (
-        <>
+        <View style={style.window}>
             <Textarea 
                 style={style.textarea}
                 value={`${historyStr}\n${formula.join("")}${input}`}
@@ -427,7 +427,7 @@ function App () {
                     <Text style={style.buttonText}>{"+"}</Text>
                 </Button>
             </View> 
-        </>
+        </View>
     )
 };
 
